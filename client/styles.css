@@ -1,0 +1,118 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+header {
+  background: #0b1120;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #1e293b;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+.panel {
+  background: #111827;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #1f2937;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #334155;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge.connected {
+  background: #22c55e;
+  color: #0f172a;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.card {
+  padding: 12px;
+  border-radius: 12px;
+  background: #0b1120;
+  border: 1px solid #1f2937;
+}
+
+.card h3 {
+  margin: 0 0 4px;
+}
+
+.price {
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+  color: #38bdf8;
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+#event-log {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+#event-log li {
+  font-size: 0.9rem;
+  color: #cbd5f5;
+}

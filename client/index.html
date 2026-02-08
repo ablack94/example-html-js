@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crypto Ticker Streams</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Crypto Ticker Streams</h1>
+        <p>Streaming prices over a REST (SSE) endpoint and a WebSocket endpoint.</p>
+      </header>
+
+      <section class="panel">
+        <h2>REST Stream (Server-Sent Events)</h2>
+        <div class="status">
+          <span id="rest-status" class="badge">disconnected</span>
+          <button id="rest-toggle">Start</button>
+        </div>
+        <div class="grid" id="rest-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>WebSocket Stream</h2>
+        <div class="status">
+          <span id="ws-status" class="badge">disconnected</span>
+          <button id="ws-toggle">Start</button>
+        </div>
+        <div class="grid" id="ws-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Latest Events</h2>
+        <ul id="event-log"></ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
