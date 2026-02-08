@@ -1,0 +1,12 @@
+{
+  "name": "http-streaming-example",
+  "version": "1.0.0",
+  "description": "Crypto price ticker with SSE and WebSocket",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.0.0"
+  }
+}

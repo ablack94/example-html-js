@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Streaming Examples</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: monospace; background: #1a1a2e; color: #e0e0e0; padding: 2rem; }
+    h1 { margin-bottom: 0.5rem; color: #eee; }
+    .subtitle { color: #888; margin-bottom: 2rem; }
+    .cards { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .card {
+      background: #16213e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1.5rem;
+      width: 300px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #6c9bff; }
+    .card h2 { color: #fff; margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .card p { color: #aaa; font-size: 0.9rem; line-height: 1.5; }
+    .tag { display: inline-block; background: #0f3460; color: #6c9bff; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.75rem; margin-bottom: 0.75rem; }
+  </style>
+</head>
+<body>
+  <h1>HTTP Streaming Examples</h1>
+  <p class="subtitle">Simulated crypto price ticker streamed to the browser</p>
+  <div class="cards">
+    <a href="sse.html" class="card">
+      <span class="tag">HTTP</span>
+      <h2>Server-Sent Events</h2>
+      <p>Streams prices using the EventSource API over a standard HTTP connection. One-way server-to-client push.</p>
+    </a>
+    <a href="ws.html" class="card">
+      <span class="tag">WS</span>
+      <h2>WebSocket</h2>
+      <p>Streams prices over a persistent WebSocket connection. Full-duplex communication channel.</p>
+    </a>
+  </div>
+</body>
+</html>

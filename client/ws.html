@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Ticker — WebSocket</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: monospace; background: #1a1a2e; color: #e0e0e0; padding: 2rem; }
+    h1 { margin-bottom: 0.5rem; color: #eee; }
+    .subtitle { color: #888; margin-bottom: 1.5rem; }
+    .status { margin-bottom: 1rem; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; }
+    .status.connected { background: #1b4332; color: #95d5b2; }
+    .status.disconnected { background: #4a1525; color: #f4978e; }
+    table { border-collapse: collapse; width: 100%; max-width: 700px; }
+    th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid #333; }
+    th { color: #888; font-weight: normal; text-transform: uppercase; font-size: 0.8rem; }
+    td.price { font-weight: bold; }
+    td.positive { color: #95d5b2; }
+    td.negative { color: #f4978e; }
+    td.symbol { color: #fff; font-weight: bold; }
+    .back { display: inline-block; margin-bottom: 1.5rem; color: #6c9bff; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">&larr; Back</a>
+  <h1>Crypto Price Ticker</h1>
+  <p class="subtitle">WebSocket via native WebSocket API</p>
+  <div id="status" class="status disconnected">Connecting...</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Price (USD)</th>
+        <th>Change</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody id="ticker"></tbody>
+  </table>
+
+  <script>
+    const tbody = document.getElementById("ticker");
+    const statusEl = document.getElementById("status");
+
+    function connect() {
+      const ws = new WebSocket("ws://localhost:8001");
+
+      ws.onopen = () => {
+        statusEl.textContent = "Connected (WebSocket)";
+        statusEl.className = "status connected";
+      };
+
+      ws.onclose = () => {
+        statusEl.textContent = "Disconnected — reconnecting...";
+        statusEl.className = "status disconnected";
+        setTimeout(connect, 2000);
+      };
+
+      ws.onerror = () => {
+        ws.close();
+      };
+
+      ws.onmessage = (event) => {
+        const ticks = JSON.parse(event.data);
+        ticks.forEach((t) => {
+          let row = document.getElementById("row-" + t.symbol);
+          if (!row) {
+            row = document.createElement("tr");
+            row.id = "row-" + t.symbol;
+            row.innerHTML =
+              '<td class="symbol"></td><td class="price"></td><td></td><td></td>';
+            tbody.appendChild(row);
+          }
+          const cells = row.children;
+          cells[0].textContent = t.symbol;
+          cells[1].textContent =
+            t.price < 1 ? "$" + t.price.toFixed(6) : "$" + t.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          cells[2].textContent = (t.change >= 0 ? "+" : "") + t.change.toFixed(2) + "%";
+          cells[2].className = t.change >= 0 ? "positive" : "negative";
+          cells[3].textContent = new Date(t.timestamp).toLocaleTimeString();
+        });
+      };
+    }
+
+    connect();
+  </script>
+</body>
+</html>

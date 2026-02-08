@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(docker build:*)",
+      "Bash(/usr/bin/docker info:*)",
+      "Bash(sudo /usr/bin/docker info:*)",
+      "Bash(python3:*)",
+      "Bash(node --check:*)",
+      "Bash(podman:*)",
+      "Bash(docker:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
